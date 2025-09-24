@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hiraya Energy</title>
+
+    <!-- Google font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ===== HEADER / NAV ===== -->
+    <header>
+      <div class="nav">
+        <div class="brand">
+          <a
+            href="index.html"
+            style="display: flex; gap: 0.8rem; align-items: center">
+            <img
+              src="HIRAYA LOGO.png"
+              alt="Hiraya Energy logo"
+              class="logo-img" />
+            <div class="text">
+              <div class="brand-title">Hiraya Energy</div>
+            </div>
+          </a>
+        </div>
+
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact-us">Contact Us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-label="Hero">
+      <div
+        class="hero__bg"
+        style="background-image: url('hero_background.jpeg')"></div>
+      <div class="hero__overlay"></div>
+
+      <div class="wrap">
+        <div class="hero-title">
+          <span class="kicker">Sustainable energy · Rural resilience</span>
+          <h1>From Nature to Power, <br />From Power to Progress.</h1>
+          <p class="subtitle">
+            One-time purchase, sustainable, and reliable power for your family.
+          </p>
+
+          <div class="hero-ctas">
+            <a class="btn-primary" href="#contact-us">Contact Us</a>
+            <a class="btn-ghost" href="#about">Learn More</a>
+          </div>
+        </div>
+
+        <!-- overlapping value cards -->
+      </div>
+    </section>
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about" class="about-section">
+      <div class="wrap">
+        <div class="about-content">
+          <div class="about-text">
+            <h2 class="about-head">
+              Production of hybrid energy systems for rural communities
+            </h2>
+            <p class="lead">
+              We design integrated systems combining high-efficiency solar
+              panels, vertical-axis wind turbines, smart hybrid inverters, and
+              battery storage. Our goal is to provide resilient, clean, and
+              affordable energy that lets families and small businesses thrive
+              even during grid interruptions.
+            </p>
+
+            <div class="feature-grid">
+              <div class="feature-box">
+                <div class="icon">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/4712/4712100.png"
+                    alt="Installation icon" />
+                </div>
+                <h4>Design & Installation</h4>
+                <p>
+                  Tailored to household or business load profile. Fast
+                  installation and local technician training.
+                </p>
+              </div>
+
+              <div class="feature-box">
+                <div class="icon">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/3063/3063826.png"
+                    alt="Service icon" />
+                </div>
+                <h4>Maintenance-as-a-Service</h4>
+                <p>
+                  Predictable monthly plan with remote monitoring and local
+                  support.
+                </p>
+              </div>
+
+              <div class="feature-box">
+                <div class="icon">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/2910/2910768.png"
+                    alt="Financing icon" />
+                </div>
+                <h4>Financing Options</h4>
+                <p>
+                  Flexible pay-as-you-go and microloan partnerships for lower
+                  upfront cost.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Our Products</h2>
+          <p>
+            Choose the wind turbine with solar panels that suits your needs.
+            One-time purchase, no monthly plans!
+          </p>
+        </div>
+
+        <div class="pricing-row">
+          <!-- Standard (Best Value) -->
+          <div class="pricing-card popular standard-card">
+            <div class="badge">Best Value</div>
+            <h3>Standard</h3>
+            <div class="price">₱25,000</div>
+
+            <ul>
+              <li>2.5 kW Wind Turbine</li>
+              <li>200W Solar Panels</li>
+              <li>Battery Included</li>
+              <li>1-Year Warranty</li>
+            </ul>
+            <a href="#" class="btn-primary">Buy Now</a>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <div class="price">₱45,000</div>
+
+            <ul>
+              <li>5 kW Wind Turbine</li>
+              <li>400W Solar Panels</li>
+              <li>Battery & Inverter Included</li>
+              <li>2-Year Warranty</li>
+            </ul>
+            <a href="#" class="btn-primary">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT US SECTION ===== -->
+    <section id="contact-us">
+      <!-- Parallax background -->
+      <div
+        class="contact__bg"
+        style="background-image: url('contact-us-bg.png')"></div>
+      <div class="contact__overlay"></div>
+
+      <div class="wrap">
+        <h2 class="contact-head" style="text-align: center">Contact Us</h2>
+        <p style="text-align: center; margin-bottom: 1.5rem">
+          Have questions or want to work with us? Reach out below.
+        </p>
+        <form id="contactForm" class="contact-form">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Your Message"
+            required></textarea>
+          <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="contact">
+      <div class="wrap">
+        <div class="footer-head">
+          <div>
+            <div class="brand-title white">Hiraya Energy</div>
+            <p class="small">
+              Decentralized energy solutions for underserved communities.
+            </p>
+          </div>
+
+          <div class="footer-cols">
+            <div>
+              <div class="footer-label">Contact</div>
+              <div class="small">
+                inquiry@hirayaenergy.ph<br />+63 912 345 6789
+              </div>
+            </div>
+            <div>
+              <div class="footer-label">Locations</div>
+              <div class="small">BARMM · Sulu Archipelago · Mindanao</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="small">
+            &copy; <span id="year"></span> Hiraya Energy · All rights reserved
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== MODAL ===== -->
+    <div id="modal">
+      <div class="modal-box">
+        <div class="modal-head">
+          <h3>Join the Waitlist</h3>
+          <button onclick="closeModal()">✕</button>
+        </div>
+        <p class="small">
+          Leave your email and we'll reach out about early deployments and pilot
+          programs.
+        </p>
+        <form id="waitlistForm">
+          <input name="name" placeholder="Your name" required />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email address"
+            required />
+          <button type="submit" class="btn-primary">Join</button>
+        </form>
+        <div id="formMsg" class="small"></div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+  </body>
+</html>
