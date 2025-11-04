@@ -1,297 +1,1209 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Solaire Energy</title>
+/* ---------- BASE / RESET ---------- */
+:root {
+  --green-900: #082b22;
+  --green-800: #0b3d2e;
+  --green-700: #12573f;
+  --accent: #facc15; /* yellow CTA */
+  --muted: #6b7280;
+  --card-bg: #ffffff;
+  --soft-shadow: 0 8px 24px rgba(10, 10, 10, 0.08);
+  --max-w: 1200px;
+  --radius: 12px;
+  --container-pad: 1.5rem;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
 
-    <!-- Google font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
-      rel="stylesheet" />
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  background: #f6f7f8;
+  color: #0f1724;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  font-size: 16px;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: 8px;
+}
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- ===== HEADER / NAV ===== -->
-    <header>
-      <div class="nav">
-        <div class="brand">
-          <a
-            href="index.html"
-            style="display: flex; gap: 0.8rem; align-items: center">
-            <img
-              src="HIRAYA LOGO.png"
-              alt="Solaire Energy logo"
-              class="logo-img" />
-            <div class="text">
-              <div class="brand-title">Solaire Energy</div>
-            </div>
-          </a>
-        </div>
+/* ---------- LAYOUT ---------- */
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 1rem;
+}
 
-        <nav>
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#contact-us">Contact Us</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+header.scrolled {
+  background: rgb(20, 100, 44); /* green blur */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.brand {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--green-800), var(--green-700));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  box-shadow: 0 6px 18px rgba(11, 61, 46, 0.12);
+}
 
-    <!-- ===== HERO ===== -->
-    <section class="hero" aria-label="Hero">
-      <div
-        class="hero__bg"
-        style="background-image: url('hero_background.jpeg')"></div>
-      <div class="hero__overlay"></div>
+.logo-img {
+  height: 40px; /* adjust to taste */
+  width: auto;
+  display: block;
+  border-radius: 6px; /* optional */
+  object-fit: contain;
+}
 
-      <div class="wrap">
-        <div class="hero-title">
-          <span class="kicker">Sustainable energy · Rural resilience</span>
-          <h1>You Partner in <br />Sustainable Energy</h1>
-          <p class="subtitle">
-            Empowering Filipino enterprises with solar and wind energy
-            solutions.
-          </p>
+.brand-title {
+  font-weight: 800;
+  color: #fff !important;
+}
+.brand-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  align-items: center;
+}
+nav ul li a {
+  color: #fff;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 8px;
+  position: relative;
+}
 
-          <div class="hero-ctas">
-            <a class="btn-primary" href="#contact-us">Contact Us</a>
-            <a class="btn-ghost" href="#about">Learn More</a>
-          </div>
-        </div>
+/* Default nav links */
+nav ul li a {
+  color: #fff;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 8px;
+  position: relative;
+  transition: color 0.3s ease;
+}
 
-        <!-- overlapping value cards -->
-      </div>
-    </section>
+/* Hover effect */
+nav ul li a:not(.cta-nav):hover {
+  color: var(--accent); /* yellow text */
+}
 
-    <!-- PRODUCT OVERVIEW SECTION -->
-    <section id="product-overview">
-      <div class="wrap product-wrap">
-        <div class="product-image fade-in">
-          <img src="Solaire-3D-Model.png" alt="Solaire Hybrid Energy System" />
-        </div>
+/* Active state: keep underline but reset text color */
+nav ul li a.active {
+  color: #fff; /* force back to white */
+}
 
-        <div class="product-info fade-in">
-          <h2 class="section-title">Hybrid Energy System Overview</h2>
-          <p class="section-subtitle">
-            The Solaire Hybrid Energy System seamlessly combines solar panels
-            and vertical-axis wind turbines to generate continuous, renewable
-            power — day and night, rain or shine.
-          </p>
+nav ul li a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px; /* distance under text */
+  width: 100%;
+  height: 3px;
+  background: var(--accent); /* yellow underline */
+  border-radius: 2px;
+}
 
-          <ul class="feature-list">
-            <li>☀️ Hybrid solar & wind design</li>
-            <li>🌀 Low-wind Savonius turbine</li>
-            <li>🌪️ Auto braking in storms</li>
-            <li>📈 Dynamic MPPT</li>
-            <li>🔧 Modular, battery-ready</li>
-            <li>💰 Energy-as-a-Service</li>
-            <li>🌿 Quiet & eco-friendly</li>
-          </ul>
+.cta-nav {
+  background: var(--accent);
+  color: var(--green-900);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: background 0.3s ease, transform 0.1s ease;
+  display: inline-block;
+}
 
-          <a href="#pricing" class="btn-primary">View Products</a>
-        </div>
-      </div>
-    </section>
+/* When clicked, lighten the background & text */
+.cta-nav:active {
+  background: #fcd34d; /* darker golden yellow */
+  transform: scale(0.96); /* tiny shrink effect */
+}
 
-    <!-- ===== ABOUT SECTION ===== -->
-    <section id="about" class="about-section">
-      <div class="wrap">
-        <div class="about-content">
-          <div class="about-text">
-            <h2 class="about-head">About Solaire Energy</h2>
-            <p class="lead">
-              At Solaire Energy, we believe that reliable power should be the
-              backbone of every thriving business. That is why we created a
-              hybrid renewable energy system designed specifically for
-              Small-to-Medium Enterprises (SMEs) in the Philippines.
-            </p>
+.cta-nav:hover {
+  background: #fbe05b; /* slightly brighter yellow */
+}
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
-            <div class="feature-grid">
-              <div class="feature-box">
-                <div class="icon">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/4712/4712100.png"
-                    alt="Installation icon" />
-                </div>
-                <h4>Design & Installation</h4>
-                <p>
-                  CCustom systems installed by local professionals. One-time
-                  setup: ₱20,000.
-                </p>
-              </div>
+  /* Background applied to hero only */
+  background-image: url("your-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* parallax effect */
+  overflow: hidden; /* keep it scoped */
+}
 
-              <div class="feature-box">
-                <div class="icon">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/3063/3063826.png"
-                    alt="Service icon" />
-                </div>
-                <h4>Energy-as-a-Service</h4>
-                <p>
-                  24/7 reliable power for a fixed monthly rate, including
-                  maintenance and monitoring.
-                </p>
-              </div>
+.hero__bg {
+  position: absolute; /* not fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  filter: brightness(0.65) saturate(0.9);
+  z-index: -2;
+  background-attachment: fixed; /* parallax-like effect */
+}
 
-              <div class="feature-box">
-                <div class="icon">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/2910/2910768.png"
-                    alt="Financing icon" />
-                </div>
-                <h4>Business Continuity</h4>
-                <p>
-                  Solaire keeps your business running smoothly, even during grid
-                  outages.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+}
+.hero .wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  padding: 0 1.5rem;
+}
 
-    <section id="pricing">
-      <div class="wrap">
-        <div class="pricing-layout">
-          <!-- Left: Text Description -->
-          <div class="pricing-info">
-            <div class="section-head">
-              <h2>Pricing</h2>
-            </div>
-            <p>
-              We remove the financial barrier for SMEs —
-              <strong>no upfront investment required.</strong> Solaire covers
-              the full <strong>₱700,000 system cost</strong>, including
-              ownership and maintenance.
-            </p>
+/* Optional subtle text entrance animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-            <img
-              src="SOLAIRE PITCH DECK.png"
-              alt="Solaire system installation"
-              class="pricing-image-1" />
+.hero-title {
+  max-width: 900px; /* wider for bigger text */
+  margin: 0 auto;
+}
 
-            <p class="small" style="margin-top: 1rem">
-              Instead of paying ₱700,000 upfront, your SME pays
-              <strong>₱19,444 per month</strong> for five years. Solaire
-              recovers its capital in three years — the rest is shared profit
-              while you enjoy uninterrupted renewable power.
-            </p>
-          </div>
+.hero-title > * {
+  margin-bottom: 1.4rem;
+}
 
-          <!-- Right: Pricing Card -->
-          <div class="pricing-card popular standard-card">
-            <div class="badge">Best Value</div>
-            <h3>5-year payment plan</h3>
+.hero-title h1 {
+  margin-bottom: 1.4rem;
+  font-size: clamp(2.5rem, 5vw, 4rem); /* BIGGER heading */
+  line-height: 1.15;
+  color: #fff;
+}
 
-            <div class="price">₱19,444<span class="per"> / month</span></div>
-            <div class="price">
-              <span class="highlight">₱25,000</span>
-            </div>
-            <div class="per">One-time installation fee</div>
+.kicker {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.2rem; /* bigger kicker */
+  color: #e6f7ef;
+}
 
-            <ul>
-              <li>Zero Down Payment — no upfront investment</li>
-              <li>2.5 kW Wind Turbine + 200W Solar Panels</li>
-              <li>Battery Storage & Smart Controller</li>
-              <li>Uninterrupted Power Supply</li>
-              <li>Full-Service Support</li>
-            </ul>
+.subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.8rem;
+  font-size: 1.25rem; /* bigger subtitle */
+  line-height: 1.7;
+}
 
-            <a href="#contact-us" class="btn-primary">Get Started</a>
-          </div>
-        </div>
-      </div>
-    </section>
+.hero-ctas {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-    <!-- ===== CONTACT US SECTION ===== -->
-    <section id="contact-us">
-      <!-- Parallax background -->
-      <div
-        class="contact__bg"
-        style="background-image: url('contact-us-bg.png')"></div>
-      <div class="contact__overlay"></div>
+/* Keep buttons same size */
+.btn-primary,
+.btn-ghost {
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+}
 
-      <div class="wrap">
-        <h2 class="contact-head" style="text-align: center">Contact Us</h2>
-        <p style="text-align: center; margin-bottom: 1.5rem">
-          Have questions or want to work with us? Reach out below.
-        </p>
-        <form id="contactForm" class="contact-form">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea
-            name="message"
-            rows="5"
-            placeholder="Your Message"
-            required></textarea>
-          <button type="submit" class="btn-primary">Send Message</button>
-        </form>
-      </div>
-    </section>
+/* Remove hero cards entirely */
+.hero-cards,
+.card-trusted,
+.card-reliable,
+.card-impact {
+  display: none !important;
+}
 
-    <!-- ===== FOOTER ===== -->
-    <footer id="contact">
-      <div class="wrap">
-        <div class="footer-head">
-          <div>
-            <div class="brand-title white">Solaire Energy</div>
-            <p class="small">
-              Decentralized energy solutions for underserved communities.
-            </p>
-          </div>
+/* Buttons */
+.btn-primary {
+  background: #facc15;
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
 
-          <div class="footer-cols">
-            <div>
-              <div class="footer-label">Contact</div>
-              <div class="small">
-                inquiry@solaireenergy.ph<br />+63 912 345 6789
-              </div>
-            </div>
-            <div>
-              <div class="footer-label">Locations</div>
-              <div class="small">BARMM · Sulu Archipelago · Mindanao</div>
-            </div>
-          </div>
-        </div>
+.btn-primary:hover {
+  background: #eab308;
+  transform: scale(1.05);
+}
 
-        <div class="footer-bottom">
-          <div class="small">
-            &copy; <span id="year"></span> Solaire Energy · All rights reserved
-          </div>
-        </div>
-      </div>
-    </footer>
+.btn-primary:active {
+  background: #facc15; /* back to base yellow */
+  transform: scale(0.97); /* tiny shrink */
+  box-shadow: 0 6px 16px rgba(250, 204, 21, 0.2);
+}
 
-    <!-- ===== MODAL ===== -->
-    <div id="modal">
-      <div class="modal-box">
-        <div class="modal-head">
-          <h3>Join the Waitlist</h3>
-          <button onclick="closeModal()">✕</button>
-        </div>
-        <p class="small">
-          Leave your email and we'll reach out about early deployments and pilot
-          programs.
-        </p>
-        <form id="waitlistForm">
-          <input name="name" placeholder="Your name" required />
-          <input
-            name="email"
-            type="email"
-            placeholder="Email address"
-            required />
-          <button type="submit" class="btn-primary">Join</button>
-        </form>
-        <div id="formMsg" class="small"></div>
-      </div>
-    </div>
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 12px 18px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-    <!-- JS -->
-    <script src="script.js"></script>
-  </body>
-</html>
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.btn-ghost:active {
+  background: rgba(255, 255, 255, 0.18);
+  transform: scale(0.97);
+}
+
+.scroll-hint {
+  display: inline-block;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+}
+
+/* ---------- PRICING SECTION ---------- */
+#pricing {
+  background: #ffffff;
+  padding: 5rem 1rem;
+  text-align: center;
+}
+
+.section-head h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 0.5rem;
+}
+
+.section-head p {
+  color: #444;
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+}
+
+/* Pricing Card Row */
+.pricing-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+}
+
+/* Individual Card */
+.pricing-card {
+  flex: 0 0 300px;
+  max-width: 300px;
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.6rem 1.8rem;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+.pricing-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 0.5rem;
+}
+
+/* Price Tag */
+.pricing-card .price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #065f46;
+  margin-bottom: 0.4rem;
+}
+
+/* Highlighted ₱25,000 */
+.pricing-card .price.highlight {
+  color: #0d9488;
+  background: rgba(13, 148, 136, 0.1);
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.4rem;
+  display: inline-block;
+  box-shadow: inset 0 0 0 2px rgba(13, 148, 136, 0.15);
+}
+
+.pricing-card .per {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.2rem;
+}
+
+/* Feature List */
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  text-align: left;
+}
+
+.pricing-card ul li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.4rem;
+  position: relative;
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+.pricing-card ul li::before {
+  content: "✔";
+  color: #fbbf24;
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+/* Highlighted (Popular) Card */
+.pricing-card.popular {
+  border: 2px solid #065f46;
+  position: relative;
+}
+
+/* Floating "Best Value" Badge */
+.pricing-card.popular .badge {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fbbf24;
+  color: #065f46;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  animation: floatBadge 3s ease-in-out infinite;
+}
+
+/* Buttons */
+.pricing-card .btn-primary {
+  display: inline-block;
+  background: #fbbf24;
+  color: #065f46;
+  font-weight: 700;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.pricing-card .btn-primary:hover {
+  background: #eab308;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pricing-card {
+    flex: 1 1 90%;
+    max-width: 90%;
+  }
+}
+
+/* Highlighted price styling */
+.pricing-card .highlight {
+  color: #0d9488; /* teal accent */
+  background: rgba(13, 148, 136, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.4rem;
+  font-weight: 800;
+  font-size: 1.6rem;
+  box-shadow: inset 0 0 0 2px rgba(13, 148, 136, 0.15);
+}
+
+/* ---------- FULL HEIGHT SECTIONS ---------- */
+#standard,
+#business,
+#team {
+  min-height: 100vh; /* full screen height */
+  display: flex;
+  align-items: center; /* vertically center content */
+  justify-content: center; /* optional: center horizontally */
+}
+
+.card-trusted,
+.card-reliable,
+.card-impact {
+  background: #d9e5d4;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: var(--soft-shadow);
+  color: black;
+  transform: translateY(40px);
+  margin: -10;
+}
+
+.card small {
+  color: var(--muted);
+  display: block;
+  margin-bottom: 8px;
+}
+.card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.card p {
+  color: var(--muted);
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* General card style */
+.about-cards .card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* Vision card with background */
+.about-cards .vision {
+  background: url("images/vision-bg.jpg") center/cover no-repeat;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+}
+.about-cards .vision h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.about-cards .vision p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+.btn-outline {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Mission card */
+.about-cards .mission h3 {
+  color: #065f46;
+  margin-bottom: 1rem;
+}
+.about-cards .mission ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+.about-cards .mission ul li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #374151;
+}
+.about-cards .mission ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #065f46;
+}
+.about-cards .mission .btn-outline {
+  border-color: #065f46;
+  color: #065f46;
+}
+.about-cards .mission .btn-outline:hover {
+  background: #065f46;
+  color: #fff;
+}
+
+/* Community Impact card */
+.about-cards .impact {
+  background: #064e3b;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.about-cards .impact .icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.about-cards .impact h3 {
+  margin-bottom: 0.5rem;
+}
+.about-cards .impact p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.btn-circle {
+  background: #facc15;
+  color: #111;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+.btn-circle:hover {
+  background: #fde047;
+}
+/* ---------- FULL HEIGHT SECTIONS ---------- */
+#about,
+#pricing,
+#team {
+  min-height: 100vh; /* full screen height */
+  display: flex;
+  align-items: center; /* vertically center content */
+  justify-content: center; /* optional: center horizontally */
+}
+
+/* ---------- CONTENT SECTIONS ---------- */
+section {
+  padding: 4.5rem 0;
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 2.5rem;
+  align-items: center;
+}
+.lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-top: 0.6rem;
+  max-width: 70ch;
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+.feature-box {
+  background: white;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: var(--soft-shadow);
+  text-align: left;
+}
+.feature-box h4 {
+  margin-bottom: 8px;
+}
+.dark-band {
+  background: linear-gradient(180deg, var(--green-900), #0a2f25);
+  color: #e6f7ef;
+  padding: 4rem 0;
+}
+.dark-band-head {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+.media-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.02)
+  );
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(2, 6, 10, 0.25);
+}
+.media-card figcaption {
+  padding: 16px;
+}
+.media-card h4 {
+  margin: 0 0 0.4rem 0;
+  color: #fff;
+}
+.media-card p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+}
+.muted-small {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.98rem;
+}
+.dark-btn {
+  background: #0b3d2e;
+  color: #fff;
+}
+
+/* ---------- CTA STRIP ---------- */
+.cta-strip {
+  margin-top: 2rem;
+  background: linear-gradient(90deg, rgba(11, 61, 46, 1), rgba(12, 50, 40, 1));
+  color: white;
+  padding: 2.2rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 12px 36px rgba(5, 20, 14, 0.18);
+}
+.cta-strip h3 {
+  margin: 0;
+}
+.cta-strip p {
+  margin: 0.4rem 0 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ---------- TEAM ---------- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+.team-grid .feature-box {
+  text-align: center;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  padding: 3rem 0;
+  background: #0a1b09;
+  color: rgba(255, 255, 255, 0.9);
+}
+.footer-head {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.footer-cols {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.footer-label {
+  font-weight: 700;
+  color: #f1fff7;
+}
+.footer-bottom {
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.white {
+  color: #fff;
+}
+.small {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ---------- MODAL ---------- */
+#modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 5, 0.6);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+}
+.modal-box {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 520px;
+  width: 92%;
+  box-shadow: var(--soft-shadow);
+}
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-head button {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+#waitlistForm {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+#waitlistForm input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
+}
+#waitlistForm button {
+  width: 100%;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1000px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .cards-row {
+    grid-template-columns: 1fr;
+  }
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-cols {
+    flex-direction: column;
+  }
+}
+@media (max-width: 520px) {
+  nav ul {
+    display: none;
+  }
+  .hero {
+    min-height: 68vh;
+  }
+  .card {
+    transform: translateY(20px);
+  }
+  .brand .text {
+    display: none;
+  }
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.contact-section {
+  background: url("images/contact-us-bg.png") center/cover fixed no-repeat; /* parallax effect */
+  position: relative;
+  z-index: 5;
+  padding: 4rem 2rem;
+  color: #fff; /* optional, for text readability */
+}
+
+.contact-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); /* dark overlay like hero */
+  z-index: -1;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form button {
+  align-self: flex-start;
+}
+
+/* ---------- ABOUT SECTION ---------- */
+.about-section {
+  background: #f9fafb;
+  padding: 5rem 0;
+}
+
+.about-content {
+  display: block; /* or flex/center if you want */
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #0b3d2e;
+}
+
+.about-text .lead {
+  font-size: 1.05rem;
+  color: #4b5563;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+
+  max-width: 900px; /* make paragraph wider */
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.feature-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.feature-box .icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  background: #e6f7ef;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-box .icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.feature-box h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: #0b3d2e;
+}
+
+.feature-box p {
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.about-image img {
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.about-image figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-head {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+/* Contact Us parallax background */
+#contact-us {
+  position: relative;
+  min-height: 100vh; /* full screen height if needed */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  overflow: hidden;
+}
+
+.contact__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; /* parallax effect */
+  z-index: -2;
+}
+
+.contact__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35); /* optional dark overlay like hero */
+  z-index: -1;
+}
+
+/* PRODUCT OVERVIEW SECTION */
+#product-overview {
+  background-color: #f9fafb;
+  padding: 100px 0;
+}
+
+.product-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.product-image {
+  flex: 1 1 450px;
+  text-align: center;
+}
+
+.product-image img {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 25px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.product-image img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.product-info {
+  flex: 1 1 450px;
+  background: #ffffff;
+  border-radius: 25px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  text-align: left;
+  transition: transform 0.4s ease;
+}
+
+.product-info:hover {
+  transform: translateY(-4px);
+}
+
+.product-info .section-title {
+  color: var(--green-900);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.product-info .section-subtitle {
+  color: #4b5563;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.feature-list li {
+  font-size: 1rem;
+  color: var(--green-800);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .product-wrap {
+    flex-direction: column;
+    text-align: center;
+  }
+  .product-info {
+    text-align: center;
+  }
+}
+
+@keyframes floatBadge {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+.pricing-card .badge {
+  animation: floatBadge 3s ease-in-out infinite;
+}
+
+/* Two-column pricing layout */
+.pricing-layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+/* Left side text */
+.pricing-info {
+  flex: 1 1 380px;
+  max-width: 460px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Right side card */
+.pricing-card {
+  flex: 1 1 320px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.pricing-image-1 {
+
+  width: 100%; /* makes it visibly larger than its container */
+  max-width: none; /* removes any built-in limit */
+  transform: scale(1.9); /* optional: slight zoom for clarity */
+  display: block;
+margin-top: 100px;
+}
