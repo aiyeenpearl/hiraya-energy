@@ -78,3 +78,33 @@ window.addEventListener("scroll", () => {
     header.classList.remove("scrolled");
   }
 });
+
+
+// Fade-in on scroll for Product Overview
+const fadeEls = document.querySelectorAll(".fade-in");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
+
+fadeEls.forEach((el) => observer.observe(el));
+
+// Fade-in reveal animation for product overview
+const fadeElements = document.querySelectorAll(".fade-in, .product-overview");
+
+window.addEventListener("scroll", () => {
+  fadeElements.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      el.classList.add("visible");
+    }
+  });
+});
+
